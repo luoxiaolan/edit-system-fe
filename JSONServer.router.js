@@ -3,5 +3,6 @@
  */
 
 module.exports = {
-    '/ajax/home': '/home'
+    '/ajax/pageData': '/pageData',
+    '/ajax/folderTree': '/folderTree'
 };

@@ -74,7 +74,7 @@ module.exports = {
               loader: "style-loader/useable!css-loader"
             },
             {
-                test: /\.(png|jpg|ttf)$/,
+                test: /\.(png|jpg|ttf|gif|svg)$/,
                 loader: 'url-loader?limit=10000',
                 exclude: /node_modules/,
             }
