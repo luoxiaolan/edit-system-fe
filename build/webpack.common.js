@@ -66,17 +66,17 @@ module.exports = {
             {
               test: /\.css$/,
               exclude: /\.useable\.css$/,
-              loader: "style-loader!css-loader"
+              loader: 'style-loader!css-loader'
             },
             {
               test: /\.useable\.css$/,
               exclude: /node_modules/,
-              loader: "style-loader/useable!css-loader"
+              loader: 'style-loader/useable!css-loader'
             },
             {
                 test: /\.(png|jpg|ttf|gif|svg)$/,
                 loader: 'url-loader?limit=10000',
-                exclude: /node_modules/,
+                exclude: /node_modules/
             }
         ]
     }

@@ -18,7 +18,7 @@ export default class Index extends React.Component {
         };
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         let id = this.props.match.params.id ? this.props.match.params.id : '';
         this.fetchData(id);
     }

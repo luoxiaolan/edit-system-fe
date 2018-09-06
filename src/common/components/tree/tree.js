@@ -39,7 +39,12 @@ export default class FolderTree extends React.Component {
             <ul>
                 {list && list.map((item, index) => (
                     <li key={item.id}>
-                        {item.list ? <Icon type={this.state.type[item.id] ? this.state.type[item.id] : 'right'} theme="outlined" onClick={() => this.toggleTree.call(this, item.id)}/> : <i className='dot'><span/></i>}
+                        {item.list
+                            ? <Icon
+                                type={this.state.type[item.id] ? this.state.type[item.id] : 'right'}
+                                theme="outlined"
+                                onClick={() => this.toggleTree.call(this, item.id)}/>
+                            : <i className='dot'><span/></i>}
                         <Link to={`/${item.id}`}>{item.title}</Link>
                         {item.list && this.state.type[item.id] === 'down' && this.renderList(item.list)}
                     </li>
