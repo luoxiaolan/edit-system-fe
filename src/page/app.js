@@ -12,6 +12,7 @@ import Nav from '../common/components/nav/nav';
 
 import HomePage from './home';
 import EditPage from './edit';
+import ViewPage from './viewpage';
 
 const Content = Layout.Content;
 
@@ -22,14 +23,21 @@ class App extends React.Component {
                 <Layout className='layout'>
                     <Header className="header">后台编辑系统</Header>
                     <Layout className='content'>
-                        <Nav/>
-                        <Content>
-                            <Switch>
-                                <Route exact path="/" component={HomePage}/>
-                                <Route exact path="/:id" component={HomePage}/>
-                                <Route path='/edit/:id' component={EditPage}/>
-                            </Switch>
-                        </Content>
+                        <Switch>
+                            <Route exact path="/login" component={HomePage}/>
+                            <Route path='/'>
+                                <Layout>
+                                    <Nav/>
+                                    <Content>
+                                        <Switch>
+                                            <Route exact path="/viewpage/:id" component={ViewPage}/>
+                                            <Route path='/edit/:id' component={EditPage}/>
+                                        </Switch>
+                                    </Content>
+                                </Layout>
+                            </Route>
+                        </Switch>
+
                     </Layout>
                 </Layout>
             </HashRouter>

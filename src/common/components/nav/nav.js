@@ -1,6 +1,5 @@
 /**
  * @file 左侧导航
- * @author v_yangpei
  */
 import React from 'react';
 import {Link} from 'react-router-dom';
@@ -16,7 +15,7 @@ export default class Nav extends React.Component {
             <Sider className="side-nav">
                 <header>
                     <Icon type="user" theme="outlined" />
-                    <span>银行家项目</span>
+                    <span>游客1, 你好</span>
                 </header>
                 <div className='treeWrapper'>
                     <h5><Link to='/'>页面树结构</Link></h5>
