@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "edit-system-fe",
   "version": "1.0.0",
   "description": "后台编辑系统前端代码",
@@ -52,4 +53,19 @@
     "webpack-dev-middleware": "^1.12.2",
     "webpack-dev-server": "^3.1.1"
   }
+=======
+  "name": "edi-system-fe",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo \"Please implement your build script and modify scripts.build section in package.json\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://luoxiaolan@icode.baidu.com:8235/baidu/fsg-fintech/edi-system-fe"
+  },
+  "author": "luoxiaolan",
+  "license": "UNLICENSED"
+>>>>>>> 317bd712981233837ab1a4e76f3b9889403bf6d8
 }
