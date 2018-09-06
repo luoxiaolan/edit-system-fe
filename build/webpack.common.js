@@ -64,14 +64,14 @@ module.exports = {
                 exclude: /\.useable\.less$/
             },
             {
-              test: /\.css$/,
-              exclude: /\.useable\.css$/,
-              loader: 'style-loader!css-loader'
+                test: /\.css$/,
+                exclude: /\.useable\.css$/,
+                loader: 'style-loader!css-loader'
             },
             {
-              test: /\.useable\.css$/,
-              exclude: /node_modules/,
-              loader: 'style-loader/useable!css-loader'
+                test: /\.useable\.css$/,
+                exclude: /node_modules/,
+                loader: 'style-loader/useable!css-loader'
             },
             {
                 test: /\.(png|jpg|ttf|gif|svg)$/,
