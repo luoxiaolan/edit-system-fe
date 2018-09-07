@@ -4,42 +4,34 @@
 import React from 'react';
 import EventBus from 'eventing-bus';
 import request from '../../common/js/request';
-import {Icon, Select, Button} from 'antd';
+import {Icon, Select, Button, Modal, Form} from 'antd';
 import {Link} from 'react-router-dom';
 import './index.less';
+import Login from './components/login';
 
 const Option = Select.Option;
 
 export default class Index extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            data: ''
-        };
     }
 
     componentDidMount() {
-        let id = this.props.match.params.id ? this.props.match.params.id : '';
-        this.fetchData(id);
+
     }
 
-    async fetchData(id) {
-        const data = await request('/ajax/pageData', {
-            method: 'post',
-            body: {
-                id
+    showConfirm = () => {
+        Modal.confirm({
+            title: '你确定要创建一个临时帐号吗？',
+            content: '如果你创建一个临时帐号，所有数据都不存储到数据库，关闭窗口后数据会丢失，可以选择立即下载编辑后的数据。',
+            onOk() {
+                // todo
             }
-        });
-
-        this.setState({
-            data: data.data.content
-        });
+        })
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.match.params.id !== nextProps.match.params.id) {
-            this.fetchData(nextProps.match.params.id);
-        }
+    handleSubmit = () => {
+
     }
 
     render() {
@@ -47,17 +39,14 @@ export default class Index extends React.Component {
 
         return (
             <div className='home-wrapper'>
-                <header>
-                    <Button type="primary">
-                        <Link to={`/edit/${id}`}>
-                            <Icon type="edit" theme="outlined" />编辑
-                        </Link>
-                    </Button>
-                    <Button type="primary"><Icon type="plus" theme="outlined" />新建页面</Button>
-                    <Button type="primary"><Icon type="arrow-down" theme="outlined" />下载页面</Button>
-                </header>
-                <div className='content'>
-                    {this.state.data}
+                <div className='form-wrapper'>
+                    <h4>用户登录</h4>
+                    <Login/>
+                    <div className='other-options'>
+                        <a href='javascript:void(0)'>忘记密码</a>
+                        Or <a href='javascript:void(0)'>立即注册</a>
+                        Or <a href='javascript:void(0)' onClick={this.showConfirm}>游客登录</a>
+                    </div>
                 </div>
             </div>
         );

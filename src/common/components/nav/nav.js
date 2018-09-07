@@ -10,6 +10,24 @@ import Tree from '../tree/tree';
 const Sider = Layout.Sider;
 
 export default class Nav extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            userInfo: ''
+        };
+    }
+
+    async componentDidMount() {
+        const data = await request('/ajax/userInfo', {
+            method: 'post'
+        });
+
+        this.setState({
+            userInfo: data.data.content
+        });
+    }
+
+
     render() {
         return (
             <Sider className="side-nav">

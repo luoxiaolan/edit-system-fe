@@ -18,7 +18,10 @@ export default class FolderTree extends React.Component {
 
     async componentDidMount() {
         const data = await request('/ajax/folderTree', {
-            method: 'get'
+            method: 'post',
+            body: {
+                userid: 1
+            }
         });
 
         this.setState({
