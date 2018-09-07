@@ -27,7 +27,7 @@ export default class Index extends React.Component {
             onOk() {
                 // todo
             }
-        })
+        });
     }
 
     handleSubmit = () => {

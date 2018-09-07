@@ -4,6 +4,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Layout, Menu, Icon} from 'antd';
+import request from '../../js/request';
 import './nav.less';
 import Tree from '../tree/tree';
 

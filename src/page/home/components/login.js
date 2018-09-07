@@ -10,7 +10,7 @@ const FormItem = Form.Item;
 class LoginForm extends React.Component {
 
     render() {
-        const {getFieldDecorator} = this.props.form;
+        const getFieldDecorator = this.props.form.getFieldDecorator;
         return (
             <Form>
                 <FormItem>
@@ -36,7 +36,7 @@ class LoginForm extends React.Component {
                     <Button type='primary' htmlType='submit' style={{width: '100%'}}>登录</Button>
                 </FormItem>
             </Form>
-        )
+        );
     }
 }
 
