@@ -8,18 +8,30 @@ import {Form, Input, Icon, Button} from 'antd';
 const FormItem = Form.Item;
 
 class LoginForm extends React.Component {
+    constructor (props) {
+        super(props);
+    }
+
+    handleSubmit = e => {
+        e.preventDefault();
+        this.props.form.validateFields((err, values) => {
+            if (!err) {
+                console.log('1');
+            }
+        });
+    }
 
     render() {
         const getFieldDecorator = this.props.form.getFieldDecorator;
         return (
-            <Form>
+            <Form onSubmit={this.handleSubmit}>
                 <FormItem>
-                    {getFieldDecorator('username', {
-                        rules: [{required: true, message: '请输入用户名'}]
+                    {getFieldDecorator('email', {
+                        rules: [{required: true, message: '请输入邮箱'}]
                     })(
                         <Input
-                            prefix={<Icon type='user' style={{color: 'rgba(0,0,0,.25)'}}/>}
-                            placeholder='username'/>
+                            prefix={<Icon type='mail' style={{color: 'rgba(0,0,0,.25)'}}/>}
+                            placeholder='email'/>
                     )}
                 </FormItem>
                 <FormItem>

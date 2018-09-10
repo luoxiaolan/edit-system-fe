@@ -8,12 +8,16 @@ import {Icon, Select, Button, Modal, Form} from 'antd';
 import {Link} from 'react-router-dom';
 import './index.less';
 import Login from './components/login';
+import Register from './components/register';
 
 const Option = Select.Option;
 
 export default class Index extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isLogin: true
+        };
     }
 
     componentDidMount() {
@@ -30,8 +34,10 @@ export default class Index extends React.Component {
         });
     }
 
-    handleSubmit = () => {
-
+    register = () => {
+        this.setState({
+            isLogin: false
+        });
     }
 
     render() {
@@ -39,15 +45,22 @@ export default class Index extends React.Component {
 
         return (
             <div className='home-wrapper'>
-                <div className='form-wrapper'>
-                    <h4>用户登录</h4>
-                    <Login/>
-                    <div className='other-options'>
-                        <a href='javascript:void(0)'>忘记密码</a>
-                        Or <a href='javascript:void(0)'>立即注册</a>
-                        Or <a href='javascript:void(0)' onClick={this.showConfirm}>游客登录</a>
+                {this.state.isLogin
+                    ? <div className='form-wrapper'>
+                        <h4>用户登录</h4>
+                        <Login/>
+                        <div className='other-options'>
+                            <a href='javascript:void(0)'>忘记密码</a>
+                            Or <a href='javascript:void(0)' onClick={this.register}>立即注册</a>
+                            Or <a href='javascript:void(0)' onClick={this.showConfirm}>游客登录</a>
+                        </div>
                     </div>
-                </div>
+                    : <div className='form-wrapper'>
+                        <h4>用户注册</h4>
+                        <Register/>
+                    </div>
+                }
+
             </div>
         );
     }
