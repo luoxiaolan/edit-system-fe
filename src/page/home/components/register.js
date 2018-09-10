@@ -17,7 +17,7 @@ class RegisterForm extends React.Component {
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
+            form.validateFields(['confirm'], {force: true});
         }
         callback();
     }
@@ -33,7 +33,9 @@ class RegisterForm extends React.Component {
 
     handleConfirmBlur = (e) => {
         const value = e.target.value;
-        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+        this.setState({
+            confirmDirty: this.state.confirmDirty || !!value
+        });
     }
 
 
