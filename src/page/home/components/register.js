@@ -12,7 +12,7 @@ class RegisterForm extends React.Component {
         super(props);
         this.state = {
             confirmDirty: false
-        }
+        };
     }
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
@@ -31,7 +31,7 @@ class RegisterForm extends React.Component {
         }
     }
 
-    handleConfirmBlur = (e) => {
+    handleConfirmBlur = e => {
         const value = e.target.value;
         this.setState({
             confirmDirty: this.state.confirmDirty || !!value
@@ -44,12 +44,12 @@ class RegisterForm extends React.Component {
 
         const formItemLayout = {
             labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 }
+                xs: {span: 24},
+                sm: {span: 8}
             },
             wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 16 },
+                xs: {span: 24},
+                sm: {span: 16}
             }
         };
 

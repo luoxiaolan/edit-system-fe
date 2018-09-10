@@ -8,7 +8,7 @@ import {Form, Input, Icon, Button} from 'antd';
 const FormItem = Form.Item;
 
 class LoginForm extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
     }
 
