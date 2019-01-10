@@ -79,7 +79,8 @@ export default class Index extends React.Component {
                     title: this.state.title,
                 }
             }).then(res => {
-                location.href = `/#/viewpage/${this.arrId[1]}`;
+                console.log(res);
+                location.href = `/#/viewpage/${res.data.content.id}`;
             });
         }
 
