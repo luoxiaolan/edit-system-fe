@@ -36,12 +36,6 @@ export default class Index extends React.Component {
         });
     }
 
-    // componentWillReceiveProps(nextProps) {
-    //     if (this.props.match.params.id !== nextProps.match.params.id) {
-    //         this.fetchData(nextProps.match.params.id);
-    //     }
-    // }
-
     render() {
         let id = this.props.match.params.id ? this.props.match.params.id : '';
 
@@ -49,11 +43,15 @@ export default class Index extends React.Component {
             <div className='viewPage-wrapper'>
                 <header>
                     <Button type="primary">
-                        <Link to={`/edit/${id}`}>
+                        <Link to={`/edit/id=${id}`}>
                             <Icon type="edit" theme="outlined" />编辑
                         </Link>
                     </Button>
-                    <Button type="primary"><Icon type="plus" theme="outlined" />新建页面</Button>
+                    <Button type="primary">
+                        <Link to={`/edit/parentId=${id}`}>
+                            <Icon type="plus" theme="outlined" />新增文章
+                        </Link>
+                    </Button>
                     <Button type="primary"><Icon type="arrow-down" theme="outlined" />下载页面</Button>
                 </header>
                 <div className='content'>

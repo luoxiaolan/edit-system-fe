@@ -20,21 +20,24 @@ export default class Index extends React.Component {
     }
 
     id = this.props.match.params.id;
+    arrId = this.id.split('=');
 
     async componentDidMount() {
-        const data = await request('/api/getArticle', {
-            method: 'get',
-            body: {
-                id: this.id
-            }
-        });
+        if (this.arrId[0] === 'id') {
+            const data = await request('/api/getArticle', {
+                method: 'get',
+                body: {
+                    id: this.arrId[1]
+                }
+            });
 
-        const content = data.data.content;
+            const content = data.data.content;
 
-        this.setState({
-            title: content.title,
-            detail: content.detail
-        });
+            this.setState({
+                title: content.title,
+                detail: content.detail
+            });
+        }
     }
 
     modules = {
@@ -54,16 +57,32 @@ export default class Index extends React.Component {
     }
 
     submit = () => {
-        request('/api/editArticle', {
-            method: 'post',
-            body: {
-                detail: this.state.detail,
-                title: this.state.title,
-                id: this.id
-            }
-        }).then(() => {
-            location.href = `/#/viewpage/${this.id}`;
-        });
+        const type = this.arrId[0];
+
+        if (type === 'id') {
+            request('/api/editArticle', {
+                method: 'post',
+                body: {
+                    detail: this.state.detail,
+                    title: this.state.title,
+                    id: this.arrId[1]
+                }
+            }).then(() => {
+                location.href = `/#/viewpage/${this.arrId[1]}`;
+            });
+        } else {
+            request('/api/createArticle', {
+                method: 'post',
+                body: {
+                    parentId: this.arrId[1],
+                    detail: this.state.detail,
+                    title: this.state.title,
+                }
+            }).then(res => {
+                location.href = `/#/viewpage/${this.arrId[1]}`;
+            });
+        }
+
     }
 
     render() {
@@ -86,7 +105,7 @@ export default class Index extends React.Component {
                 </ReactQuill>
                 <div className='footer'>
                     <Button type="primary" onClick={this.submit}>保存</Button>
-                    <Link to='/'>取消</Link>
+                    <Link to={`/viewpage/${this.arrId[1]}`}>取消</Link>
                 </div>
             </div>
         );
