@@ -14,9 +14,18 @@ class LoginForm extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.form.validateFields((err, values) => {
+        const {validateFields, getFieldsValue} = this.props.form;
+
+        validateFields((err, values) => {
             if (!err) {
-                console.log('1');
+                let data = getFieldsValue();
+
+                request('/api/login', {
+                    method: 'post',
+                    body: data
+                }).then(res => {
+                    location.href = '/'
+                });
             }
         });
     }

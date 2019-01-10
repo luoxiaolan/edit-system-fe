@@ -16,14 +16,14 @@ module.exports = Object.assign({}, commonWebpack, {
         hot: true,
         open: true,
         historyApiFallback: true,
-        host: '127.0.0.1',
+        host: 'localhost',
         disableHostCheck: true,
         headers: {
             'Access-Control-Allow-Origin': '*'
         },
         proxy: {
-            '/ajax/*': {
-                target: 'http://127.0.0.1:3000',
+            '/api/*': {
+                target: 'http://localhost:8848',
                 changeOrigin: true,
                 secure: false
             }

@@ -3,6 +3,7 @@
  */
 
 module.exports = {
-    '/ajax/pageData': '/pageData',
-    '/ajax/folderTree': '/folderTree'
+    '/api/pageData': '/pageData',
+    '/api/folderTree': '/folderTree',
+    '/api/userInfo': '/userInfo'
 };

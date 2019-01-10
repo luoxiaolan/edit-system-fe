@@ -5,25 +5,23 @@
 
 import hyphenate from './hyphenate';
 import fetch from 'isomorphic-fetch';
-import urlencode from './urlencode';
-// import {error} from '../../pages/components/tip';
+import {notification} from 'antd';
 
-function checkStatus(response) {
-    if (response.ok) {
-        return response;
-    }
+// function checkStatus(response) {
+//     if (response.ok) {
+//         return response;
+//     }
+//     const error = new Error();
+//     error.response = response;
+//     throw error;
+// }
 
-    const error = new Error();
-
-    error.response = response;
-    throw error;
+function generateTimeTag() {
+    return `t=${new Date().valueOf()}`;
 }
 
 export default async function request(url, options, unhyphenate = true, type = 'JSON', noerror = false) {
-    let queryObj = hyphenate.getSearchString();
-
     options = options || {};
-
     if (options.body) {
         let body = unhyphenate
             ? JSON.stringify(options.body)
@@ -37,39 +35,55 @@ export default async function request(url, options, unhyphenate = true, type = '
             url += (/\?/.test(url) ? '&' : '?') + hyphenate.encodeData(body);
             delete options.body;
         } else {
-            options.body = urlencode(body);
+            options.body = JSON.stringify(body);
         }
+    }
+
+    // 给 get 请求都加上时间戳
+    if (options.method.match(/^get$/gi)) {
+        url += (/\?/.test(url) ? '&' : '?') + generateTimeTag();
     }
 
     !options.credentials && (options.credentials = 'include');
 
     options.headers = {
         'Accept': 'application/json',
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/json'
     };
+
+    // header 中添加 token 认证
+    const token = localStorage.getItem('token');
+    token && (options.headers.Authorization = `Bearer ${token}`);
 
     try {
         const response = await fetch(url, options);
-
-        checkStatus(response);
-
+        // checkStatus(response);
         let data;
         let responseData = {};
         let headers = {};
         let body = {};
         if (type === 'JSON') {
             responseData = await response.json();
-
             if (!responseData
                 || !responseData.hasOwnProperty('ret')
-                || (!!responseData.ret && responseData.ret !== '0')) {
-                let msg = responseData.msg || '服务器错误';
-                let ret = responseData.ret || 'fail';
-                responseData = {
-                    ret: ret,
-                    msg: msg
-                };
-                // !noerror && error(responseData.msg);
+                || (!!responseData.ret && responseData.ret !== 0 && responseData.ret !== 'SUCCESS')) {
+                // 登陆跳转
+                if (responseData.ret === 'NO_LOGIN') {
+                    window.location.href = 'http://localhost:8080/#/login';
+                }
+                // 请求未成功错误提示
+                else {
+                    let msg = responseData.msg || '服务器错误';
+                    let ret = responseData.ret || 'fail';
+                    notification.error({
+                        message: '错误提示',
+                        description: responseData.msg,
+                        placement: 'bottomRight'
+                    });
+                }
+            } else if (responseData.content && responseData.content.token){
+                // 如果有 token，则将 token 存到 localStorage 中
+                localStorage.setItem('token', responseData.content.token);
             }
         } else if (type === 'text') {
             data = await response.text();
@@ -80,7 +94,6 @@ export default async function request(url, options, unhyphenate = true, type = '
             headers = await response.headers;
             body = await response.body;
         }
-
         const ret = {
             data: responseData,
             headers: headers,
@@ -92,14 +105,16 @@ export default async function request(url, options, unhyphenate = true, type = '
                 .headers
                 .get('x-total-count');
         }
-
         return ret;
 
     } catch (e) {
         if (noerror) {
             return;
         }
-
-        // error('网络错误');
+        notification.error({
+            message: '错误提示',
+            description: '连接网络失败，请稍后重试',
+            placement: 'bottomRight'
+        });
     }
 }

@@ -19,8 +19,8 @@ export default class Nav extends React.Component {
     }
 
     async componentDidMount() {
-        const data = await request('/ajax/userInfo', {
-            method: 'post'
+        const data = await request('/api/userInfo', {
+            method: 'get'
         });
 
         this.setState({
@@ -34,10 +34,10 @@ export default class Nav extends React.Component {
             <Sider className="side-nav">
                 <header>
                     <Icon type="user" theme="outlined" />
-                    <span>游客1, 你好</span>
+                    <span>你好，{this.state.userInfo.name}</span>
                 </header>
                 <div className='treeWrapper'>
-                    <h5><Link to='/'>页面树结构</Link></h5>
+                    <h5><Link to='/viewpage/1'>页面树结构</Link></h5>
                     <Tree/>
                 </div>
             </Sider>

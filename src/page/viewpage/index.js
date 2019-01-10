@@ -24,8 +24,8 @@ export default class Index extends React.Component {
     }
 
     async fetchData(id) {
-        const data = await request('/ajax/pageData', {
-            method: 'post',
+        const data = await request('/api/getArticle', {
+            method: 'get',
             body: {
                 id
             }
@@ -36,17 +36,17 @@ export default class Index extends React.Component {
         });
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.props.match.params.id !== nextProps.match.params.id) {
-            this.fetchData(nextProps.match.params.id);
-        }
-    }
+    // componentWillReceiveProps(nextProps) {
+    //     if (this.props.match.params.id !== nextProps.match.params.id) {
+    //         this.fetchData(nextProps.match.params.id);
+    //     }
+    // }
 
     render() {
         let id = this.props.match.params.id ? this.props.match.params.id : '';
 
         return (
-            <div className='home-wrapper'>
+            <div className='viewPage-wrapper'>
                 <header>
                     <Button type="primary">
                         <Link to={`/edit/${id}`}>
@@ -57,7 +57,8 @@ export default class Index extends React.Component {
                     <Button type="primary"><Icon type="arrow-down" theme="outlined" />下载页面</Button>
                 </header>
                 <div className='content'>
-                    {this.state.data}
+                    <h5>{this.state.data.title}</h5>
+                    <article>{this.state.data.detail}</article>
                 </div>
             </div>
         );

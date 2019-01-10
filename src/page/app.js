@@ -10,9 +10,10 @@ import {hot} from 'react-hot-loader';
 import Header from '../common/components/header/header';
 import Nav from '../common/components/nav/nav';
 
-import HomePage from './home';
+import UserPage from './user';
 import EditPage from './edit';
 import ViewPage from './viewpage';
+import HomePage from './home';
 
 const Content = Layout.Content;
 
@@ -24,20 +25,20 @@ class App extends React.Component {
                     <Header className="header">后台编辑系统</Header>
                     <Layout className='content'>
                         <Switch>
-                            <Route exact path="/login" component={HomePage}/>
+                            <Route exact path="/login" component={UserPage}/>
                             <Route path='/'>
                                 <Layout>
                                     <Nav/>
                                     <Content>
                                         <Switch>
+                                            <Route exact path="/" component={HomePage}/>
                                             <Route exact path="/viewpage/:id" component={ViewPage}/>
-                                            <Route path='/edit/:id' component={EditPage}/>
+                                            <Route exact path='/edit/:id' component={EditPage}/>
                                         </Switch>
                                     </Content>
                                 </Layout>
                             </Route>
                         </Switch>
-
                     </Layout>
                 </Layout>
             </HashRouter>

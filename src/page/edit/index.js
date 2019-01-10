@@ -5,7 +5,7 @@ import React from 'react';
 import EventBus from 'eventing-bus';
 import request from '../../common/js/request';
 import ReactQuill from 'react-quill';
-import {Button} from 'antd';
+import {Button, Input} from 'antd';
 import {Link} from 'react-router-dom';
 import 'react-quill/dist/quill.snow.css';
 import './index.less';
@@ -14,27 +14,26 @@ export default class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            text: ''
+            detail: '',
+            title: ''
         };
     }
 
+    id = this.props.match.params.id;
+
     async componentDidMount() {
-        let id = this.props.match.params.id ? this.props.match.params.id : '';
-        const data = await request('/ajax/pageData', {
-            method: 'post',
+        const data = await request('/api/getArticle', {
+            method: 'get',
             body: {
-                id
+                id: this.id
             }
         });
 
-        this.setState({
-            text: data.data.content
-        });
-    }
+        const content = data.data.content;
 
-    handleChange = value => {
         this.setState({
-            text: value
+            title: content.title,
+            detail: content.detail
         });
     }
 
@@ -48,20 +47,45 @@ export default class Index extends React.Component {
         ]
     }
 
+    handleChange = value => {
+        this.setState({
+            detail: value
+        });
+    }
+
+    submit = () => {
+        request('/api/editArticle', {
+            method: 'post',
+            body: {
+                detail: this.state.detail,
+                title: this.state.title,
+                id: this.id
+            }
+        }).then(() => {
+            location.href = `/#/viewpage/${this.id}`;
+        });
+    }
+
     render() {
         return (
             <div className='edit-wrapper'>
+                <Input value={this.state.title} size="large" className="title"
+                    onChange={
+                        e => {
+                            this.setState({
+                                title: e.target.value
+                            });
+                        }
+                    }></Input>
                 <ReactQuill
-                className='editor'
-                onChange={this.handleChange}
-                modules= {this.modules}
-                value={this.state.text}
-                >
-
+                    className='editor'
+                    onChange={this.handleChange}
+                    modules= {this.modules}
+                    value={this.state.detail}
+                    >
                 </ReactQuill>
                 <div className='footer'>
-                    <Button>预览</Button>
-                    <Button type="primary">保存</Button>
+                    <Button type="primary" onClick={this.submit}>保存</Button>
                     <Link to='/'>取消</Link>
                 </div>
             </div>
