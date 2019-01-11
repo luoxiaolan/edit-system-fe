@@ -31,7 +31,7 @@ export default class Nav extends React.Component {
 
     render() {
         return (
-            <Sider className="side-nav">
+            <Sider className="side-nav" width="280px">
                 <header>
                     <Icon type="user" theme="outlined" />
                     <span>你好，{this.state.userInfo.name}</span>
