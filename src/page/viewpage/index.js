@@ -52,7 +52,6 @@ export default class Index extends React.Component {
                             <Icon type="plus" theme="outlined" />新增文章
                         </Link>
                     </Button>
-                    <Button type="primary"><Icon type="arrow-down" theme="outlined" />下载页面</Button>
                 </header>
                 <div className='content'>
                     <h5>{this.state.data.title}</h5>
