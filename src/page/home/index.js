@@ -10,7 +10,11 @@ import './index.less';
 export default () => {
     return (
         <div className="home-wrapper">
-            <Button type="primary" className="add-page"><Icon type="plus" theme="outlined" />新建文章</Button>
+            <Button type="primary" className="add-page">
+                <Link to={`/edit/parendId=null`}>
+                    <Icon type="plus" theme="outlined" />新建页面
+                </Link>
+            </Button>
             <article>
                 <h5>欢迎来到后台编辑系统</h5>
                 <section>

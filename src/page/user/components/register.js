@@ -38,6 +38,23 @@ class RegisterForm extends React.Component {
         });
     }
 
+    submit = () => {
+        const {validateFields, getFieldsValue} = this.props.form;
+
+        validateFields((err, values) => {
+            if (!err) {
+                let data = getFieldsValue();
+
+                request('/api/register', {
+                    method: 'post',
+                    body: data
+                }).then(res => {
+                    location.href = '/';
+                });
+            }
+        });
+    }
+
 
     render() {
         const getFieldDecorator = this.props.form.getFieldDecorator;
@@ -55,6 +72,15 @@ class RegisterForm extends React.Component {
 
         return (
             <Form>
+                <FormItem
+                    {...formItemLayout}
+                    label='用户名称'>
+                    {getFieldDecorator('name', {
+                        rules: [{required: true, message: '请输入用户名'}]
+                    })(
+                        <Input/>
+                    )}
+                </FormItem>
                 <FormItem
                 {...formItemLayout}
                 label='用户邮箱'>
@@ -87,7 +113,7 @@ class RegisterForm extends React.Component {
                     )}
                 </FormItem>
                 <FormItem>
-                    <Button type='primary' htmlType='submit' style={{width: '100%'}}>注册</Button>
+                    <Button type='primary' htmlType='submit' style={{width: '100%'}} onClick={this.submit}>注册</Button>
                 </FormItem>
             </Form>
         );

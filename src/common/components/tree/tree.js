@@ -16,6 +16,8 @@ export default class FolderTree extends React.Component {
         };
     }
 
+    id = location.hash.split('/').pop();
+
     async componentDidMount() {
         const data = await request('/api/folderTree', {
             method: 'get'
@@ -45,7 +47,7 @@ export default class FolderTree extends React.Component {
                                 theme="outlined"
                                 onClick={() => this.toggleTree.call(this, item.id)}/>
                             : <i className='dot'><span/></i>}
-                        <Link to={`/viewpage/${item.id}`}>{item.title}</Link>
+                        <Link to={`/viewpage/${item.id}`} className={this.id == item.id ? 'selected' : ''}>{item.title}</Link>
                         {item.list && this.state.type[item.id] === 'down' && this.renderList(item.list)}
                     </li>
                 ))}

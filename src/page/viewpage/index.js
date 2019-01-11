@@ -6,6 +6,7 @@ import EventBus from 'eventing-bus';
 import request from '../../common/js/request';
 import {Icon, Select, Button} from 'antd';
 import {Link} from 'react-router-dom';
+
 import './index.less';
 
 const Option = Select.Option;
@@ -61,7 +62,8 @@ export default class Index extends React.Component {
                 </header>
                 <div className='content'>
                     <h5>{this.state.data.title}</h5>
-                    <article>{this.state.data.detail}</article>
+                    <p className="desc">最后修改于：{new Date(this.state.data.updatedAt).toLocaleString()}</p>
+                    <article dangerouslySetInnerHTML={{__html: this.state.data.detail}}></article>
                 </div>
             </div>
         );

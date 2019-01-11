@@ -5,7 +5,7 @@ import React from 'react';
 import EventBus from 'eventing-bus';
 import request from '../../common/js/request';
 import ReactQuill from 'react-quill';
-import {Button, Input} from 'antd';
+import {Button, Input, Modal} from 'antd';
 import {Link} from 'react-router-dom';
 import 'react-quill/dist/quill.snow.css';
 import './index.less';
@@ -59,6 +59,13 @@ export default class Index extends React.Component {
     submit = () => {
         const type = this.arrId[0];
 
+        if (!this.state.title) {
+            Modal.info({
+                title: '请输入文章名称'
+            });
+            return;
+        }
+
         if (type === 'id') {
             request('/api/editArticle', {
                 method: 'post',
@@ -67,7 +74,10 @@ export default class Index extends React.Component {
                     title: this.state.title,
                     id: this.arrId[1]
                 }
-            }).then(() => {
+            }).then(res => {
+                if (res.data.ret) {
+                    return;
+                }
                 location.href = `/#/viewpage/${this.arrId[1]}`;
             });
         } else {
@@ -79,7 +89,9 @@ export default class Index extends React.Component {
                     title: this.state.title
                 }
             }).then(res => {
-                console.log(res);
+                if (res.data.ret) {
+                    return;
+                }
                 location.href = `/#/viewpage/${res.data.content.id}`;
             });
         }
@@ -106,7 +118,11 @@ export default class Index extends React.Component {
                 </ReactQuill>
                 <div className='footer'>
                     <Button type="primary" onClick={this.submit}>保存</Button>
-                    <Link to={`/viewpage/${this.arrId[1]}`}>取消</Link>
+                    <Button onClick={
+                            () => {
+                                history.back();
+                            }
+                        }>取消</Button>
                 </div>
             </div>
         );
