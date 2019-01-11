@@ -76,7 +76,7 @@ export default class Index extends React.Component {
                 body: {
                     parentId: this.arrId[1],
                     detail: this.state.detail,
-                    title: this.state.title,
+                    title: this.state.title
                 }
             }).then(res => {
                 console.log(res);

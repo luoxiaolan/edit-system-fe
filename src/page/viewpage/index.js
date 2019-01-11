@@ -36,6 +36,12 @@ export default class Index extends React.Component {
         });
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.match.params.id !== nextProps.match.params.id) {
+            this.fetchData(nextProps.match.params.id);
+        }
+    }
+
     render() {
         let id = this.props.match.params.id ? this.props.match.params.id : '';
 

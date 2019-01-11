@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
                     method: 'post',
                     body: data
                 }).then(res => {
-                    location.href = '/'
+                    location.href = '/';
                 });
             }
         });
