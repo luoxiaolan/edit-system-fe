@@ -67,6 +67,14 @@ export default withBus()(class extends React.Component {
             return;
         }
 
+        const successCallback = (ret, callback) => {
+            if (ret) {
+                return;
+            }
+            this.props.bus.emit('resetNav');
+            callback();
+        }
+
         if (type === 'id') {
             request('/api/editArticle', {
                 method: 'post',
@@ -76,10 +84,9 @@ export default withBus()(class extends React.Component {
                     id: this.arrId[1]
                 }
             }).then(res => {
-                if (res.data.ret) {
-                    return;
-                }
-                location.href = `/#/viewpage/${this.arrId[1]}`;
+                successCallback(res.data.ret, () => {
+                    location.href = `/#/viewpage/${this.arrId[1]}`;
+                });
             });
         } else {
             request('/api/createArticle', {
@@ -90,14 +97,11 @@ export default withBus()(class extends React.Component {
                     title: this.state.title
                 }
             }).then(res => {
-                if (res.data.ret) {
-                    return;
-                }
-                location.href = `/#/viewpage/${res.data.content.id}`;
-                this.props.bus.emit('resetNav');
+                successCallback(res.data.ret, () => {
+                    location.href = `/#/viewpage/${res.data.content.id}`;
+                });
             });
         }
-
     }
 
     render() {
