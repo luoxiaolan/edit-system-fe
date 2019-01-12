@@ -10,15 +10,15 @@ import Tree from '../tree/tree';
 
 const Sider = Layout.Sider;
 
-export default class Nav extends React.Component {
+export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userInfo: ''
+            userInfo: {}
         };
     }
 
-    async componentDidMount() {
+    fetch = async () => {
         const data = await request('/api/userInfo', {
             method: 'get'
         });
@@ -26,6 +26,10 @@ export default class Nav extends React.Component {
         this.setState({
             userInfo: data.data.content
         });
+    }
+
+    componentDidMount() {
+        this.fetch();
     }
 
 
@@ -37,7 +41,7 @@ export default class Nav extends React.Component {
                     <span>你好，{this.state.userInfo.name}</span>
                 </header>
                 <div className='treeWrapper'>
-                    <h5><Link to='/viewpage/1'>页面树结构</Link></h5>
+                    <h5><Link to='/'>页面树结构</Link></h5>
                     <Tree/>
                 </div>
             </Sider>

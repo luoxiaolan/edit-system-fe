@@ -7,10 +7,11 @@ import request from '../../common/js/request';
 import ReactQuill from 'react-quill';
 import {Button, Input, Modal} from 'antd';
 import {Link} from 'react-router-dom';
+import {withBus} from 'react-bus';
 import 'react-quill/dist/quill.snow.css';
 import './index.less';
 
-export default class Index extends React.Component {
+export default withBus()(class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -93,6 +94,7 @@ export default class Index extends React.Component {
                     return;
                 }
                 location.href = `/#/viewpage/${res.data.content.id}`;
+                this.props.bus.emit('resetNav');
             });
         }
 
@@ -127,4 +129,4 @@ export default class Index extends React.Component {
             </div>
         );
     }
-}
+});

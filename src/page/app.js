@@ -25,7 +25,7 @@ class App extends React.Component {
                     <Layout className='content'>
                         <Switch>
                             <Route exact path="/login" component={UserPage}/>
-                            <Route path='/'>
+                            <Route>
                                 <Layout>
                                     <Nav/>
                                     <Content>
