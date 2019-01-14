@@ -73,7 +73,7 @@ export default withBus()(class extends React.Component {
             }
             this.props.bus.emit('resetNav');
             callback();
-        }
+        };
 
         if (type === 'id') {
             request('/api/editArticle', {

@@ -55,12 +55,15 @@ export default withBus()(
                                     theme="outlined"
                                     onClick={() => this.toggleTree.call(this, item.id)}/>
                                 : <i className='dot'><span/></i>}
-                            <Link to={`/viewpage/${item.id}`} className={this.state.id == item.id ? 'selected' : ''}>{item.title}</Link>
+                            <Link to={`/viewpage/${item.id}`}
+                                className={this.state.id == item.id ? 'selected' : ''}>
+                                {item.title}
+                            </Link>
                             {item.list && this.state.type[item.id] === 'down' && this.renderList(item.list)}
                         </li>
                     ))}
                 </ul>
-            )
+            );
         }
 
         render() {
@@ -68,7 +71,7 @@ export default withBus()(
                 <div className='tree-wrapper'>
                     {this.renderList(this.state.list)}
                 </div>
-            )
+            );
         }
     }
 );

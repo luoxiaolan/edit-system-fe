@@ -11,7 +11,7 @@ export default () => {
     return (
         <div className="home-wrapper">
             <Button type="primary" className="add-page">
-                <Link to={`/edit/parendId=null`}>
+                <Link to={'/edit/parendId=null'}>
                     <Icon type="plus" theme="outlined" />新建页面
                 </Link>
             </Button>
