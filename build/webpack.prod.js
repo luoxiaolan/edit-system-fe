@@ -25,11 +25,11 @@ module.exports = {
         chunkFilename: `${publicPath}js/[name].[contenthash:5].js`
     },
     module: {
-        rules:[
+        rules: [
             {
                 test: /\.js[x]?$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: 'babel-loader'
             },
             {
                 test: /\.less$/,
@@ -64,14 +64,14 @@ module.exports = {
                 exclude: /\.useable\.less$/
             },
             {
-              test: /\.css$/,
-              exclude: /\.useable\.css$/,
-              loader: "style-loader!css-loader"
+                test: /\.css$/,
+                exclude: /\.useable\.css$/,
+                loader: "style-loader!css-loader"
             },
             {
-              test: /\.useable\.css$/,
-              exclude: /node_modules/,
-              loader: "style-loader/useable!css-loader"
+                test: /\.useable\.css$/,
+                exclude: /node_modules/,
+                loader: "style-loader/useable!css-loader"
             },
             {
                 test: /\.(png|jpg|ttf|svg)$/,
@@ -132,7 +132,7 @@ module.exports = {
             title: 'edit-system-fe',
             template: path.join(__dirname, '../public/index.html'),
             filename: './template/edit-system-fe/index.html'
-        }),
+        })
         // new BundleAnalyzerPlugin()
     ]
 };
