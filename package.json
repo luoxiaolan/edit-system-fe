@@ -2,10 +2,10 @@
   "name": "edit-system-fe",
   "version": "1.0.0",
   "description": "后台编辑系统前端代码",
-  "main": " ",
+  "main": "src/index.js",
   "scripts": {
-    "build": "webpack --config ./build/webpack.prod.js",
-    "dev": "webpack-dev-server --config ./build/webpack.dev.js",
+    "build": "webpack --mode production --config ./build/webpack.prod.js",
+    "dev": "webpack-dev-server --mode development --config ./build/webpack.dev.js",
     "jsonserver": "nodemon JSONServer.js --watch mock JSONServer.router.js",
     "start": "npm run dev & npm run jsonserver"
   },
@@ -38,10 +38,10 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^1.12.2",
     "webpack-dev-server": "^3.1.1",
-    "babel-loader": "^7.1.1"
+    "babel-loader": "^7.1.1",
+    "babel-core": "^6.25.0"
   },
   "devDependencies": {
-    "babel-core": "^6.25.0",
     "babel-plugin-import": "^1.2.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
