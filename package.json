@@ -4,7 +4,7 @@
   "description": "后台编辑系统前端代码",
   "main": " ",
   "scripts": {
-    "build": "cross-env DEBUG=false && webpack --config ./build/webpack.config.prd.js",
+    "build": "cross-env DEBUG=false && webpack --config ./build/webpack.prod.js",
     "dev": "webpack-dev-server --config ./build/webpack.dev.js",
     "jsonserver": "nodemon JSONServer.js --watch mock JSONServer.router.js",
     "start": "npm run dev & npm run jsonserver"
