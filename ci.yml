@@ -11,9 +11,3 @@ Profiles:
     env: ubuntu
     command: export NODE_ENV=production && sh scripts/build.sh
     release: true
-
-  - profile:
-    name: buildDevelopment
-    env: ubuntu
-    command: export NODE_ENV=development && sh scripts/build.sh
-    release: true
