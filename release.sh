@@ -7,7 +7,7 @@ fi
 echo "webpack done ! "
 
 cd dist
-tar -czvf fdi-console-fe.tar.gz ./assets ./template
+tar -czvf edit-system-fe.tar.gz ./assets ./template
 rm -rf ./assets ./template
 cd ..
 echo "build to dist done ! "
