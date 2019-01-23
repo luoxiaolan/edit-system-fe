@@ -2,11 +2,11 @@ Global:
   tool: build_submitter
 
 Default:
-  profile: [buildProduction]
+  profile: [build]
 
 Profiles:
     - profile:
-      name : buildProduction
+      name : build
       env: ubuntu
-      command: export NODE_ENV=production && sh scripts/build.sh
+      command: sh build.sh
       release: True
