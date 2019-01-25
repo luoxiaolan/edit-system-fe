@@ -20,13 +20,15 @@ export default class Index extends React.Component {
         };
     }
 
-    componentDidMount() {
-
-    }
-
     register = () => {
         this.setState({
             isLogin: false
+        });
+    }
+
+    login = () => {
+        this.setState({
+            isLogin: true
         });
     }
 
@@ -40,13 +42,15 @@ export default class Index extends React.Component {
                         <h4>用户登录</h4>
                         <Login/>
                         <div className='other-options'>
-                            <a href='javascript:void(0)'>忘记密码</a>
-                            Or <a href='javascript:void(0)' onClick={this.register}>立即注册</a>
+                            <a href='javascript:void(0)' onClick={this.register}>立即注册</a>
                         </div>
                     </div>
                     : <div className='form-wrapper'>
                         <h4>用户注册</h4>
                         <Register/>
+                        <div className='other-options'>
+                            <a href='javascript:void(0)' onClick={this.login}>返回登录</a>
+                        </div>
                     </div>
                 }
 

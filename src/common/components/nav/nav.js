@@ -14,7 +14,9 @@ export default class extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            userInfo: {}
+            userInfo: {
+                name: '朋友'
+            }
         };
     }
 
@@ -23,9 +25,11 @@ export default class extends React.Component {
             method: 'get'
         });
 
-        this.setState({
-            userInfo: data.data.content
-        });
+        if (data.data.content) {
+            this.setState({
+                userInfo: data.data.content
+            });
+        }
     }
 
     componentDidMount() {
