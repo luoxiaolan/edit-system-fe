@@ -69,7 +69,7 @@ export default async function request(url, options, unhyphenate = true, type = '
                 || (!!responseData.ret && responseData.ret !== 0 && responseData.ret !== 'SUCCESS')) {
                 // 登陆跳转
                 if (responseData.ret === 'NO_LOGIN') {
-                    window.location.href = 'http://localhost:8080/#/login';
+                    window.location.href = '/#/login';
                 }
                 // 请求未成功错误提示
                 else {
