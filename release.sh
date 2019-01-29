@@ -7,7 +7,7 @@ fi
 echo "webpack done ! "
 
 cd dist
-tar -czvf edit-system-fe.tar.gz ./assets ./template
-rm -rf ./assets ./template
+tar -czvf edit-system-fe.tar.gz ./assets ./template favicon.ico
+rm -rf ./assets ./template favicon.ico
 cd ..
 echo "build to dist done ! "
