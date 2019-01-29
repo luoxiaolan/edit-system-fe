@@ -74,6 +74,12 @@ export default withBus()(
         render() {
             return (
                 <div className='tree-wrapper'>
+                    <h5><Link to='/' className={this.state.id == '' ? 'selected' : ''}
+                        onClick={() => {
+                            this.setState({
+                                id: ''
+                            });
+                        }}>页面树结构</Link></h5>
                     {this.renderList(this.state.list)}
                 </div>
             );

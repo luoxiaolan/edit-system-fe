@@ -45,7 +45,6 @@ export default class extends React.Component {
                     <span>你好，{this.state.userInfo.name}</span>
                 </header>
                 <div className='treeWrapper'>
-                    <h5><Link to='/'>页面树结构</Link></h5>
                     <Tree/>
                 </div>
             </Sider>
