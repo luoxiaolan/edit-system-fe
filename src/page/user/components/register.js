@@ -24,6 +24,7 @@ class RegisterForm extends React.Component {
 
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
+
         if (value && value !== form.getFieldValue('password')) {
             callback('Two passwords that you enter is inconsistent!');
         } else {
@@ -79,9 +80,13 @@ class RegisterForm extends React.Component {
                 </FormItem>
                 <FormItem>
                     {getFieldDecorator('password', {
-                        rules: [{required: true, message: '请输入密码'}]
-                    }, {
-                        validator: this.validateToNextPassword
+                        rules: [{
+                            required: true,
+                            message: '请输入密码'
+                        },
+                        {
+                            validator: this.validateToNextPassword
+                        }]
                     })(
                         <Input type='password'
                             prefix={<Icon type='lock' style={{color: 'rgba(0,0,0,.25)'}}/>}
@@ -90,9 +95,13 @@ class RegisterForm extends React.Component {
                 </FormItem>
                 <FormItem>
                     {getFieldDecorator('confirm', {
-                        rules: [{required: true, message: '请再次输入密码'}]
-                    }, {
-                        validator: this.compareToFirstPassword
+                        rules: [{
+                            required: true,
+                            message: '请再次输入密码'
+                        },
+                        {
+                            validator: this.compareToFirstPassword
+                        }]
                     })(
                         <Input type='password'
                             onBlur={this.handleConfirmBlur}
