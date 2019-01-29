@@ -131,7 +131,8 @@ module.exports = {
         new HtmlwebpackPlugin({
             title: 'edit-system-fe',
             template: path.join(__dirname, '../public/index.html'),
-            filename: './template/edit-system-fe/index.html'
+            filename: './template/edit-system-fe/index.html',
+            favicon: path.join(__dirname, '../favicon.ico')
         })
         // new BundleAnalyzerPlugin()
     ]

@@ -56,7 +56,12 @@ export default withBus()(
                                     onClick={() => this.toggleTree.call(this, item.id)}/>
                                 : <i className='dot'><span/></i>}
                             <Link to={`/viewpage/${item.id}`}
-                                className={this.state.id == item.id ? 'selected' : ''}>
+                                className={this.state.id == item.id ? 'selected' : ''}
+                                onClick={() => {
+                                    this.setState({
+                                        id: item.id
+                                    });
+                                }}>
                                 {item.title}
                             </Link>
                             {item.list && this.state.type[item.id] === 'down' && this.renderList(item.list)}
