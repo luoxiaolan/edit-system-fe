@@ -50,7 +50,9 @@ class RegisterForm extends React.Component {
                     method: 'post',
                     body: data
                 }).then(res => {
-                    location.href = '/';
+                    if (res && res.data && !res.data.ret) {
+                        location.href = '/';
+                    }
                 });
             }
         });

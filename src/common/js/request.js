@@ -75,9 +75,10 @@ export default async function request(url, options, unhyphenate = true, type = '
                 else {
                     let msg = responseData.msg || '服务器错误';
                     let ret = responseData.ret || 'fail';
+            
                     notification.error({
                         message: '错误提示',
-                        description: responseData.msg,
+                        description: responseData.message,
                         placement: 'bottomRight'
                     });
                 }
