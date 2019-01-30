@@ -122,7 +122,7 @@ module.exports = {
             chunkFilename: publicPath + 'css/[id].[contenthash:8].css'
         }),
         new webpack.ProvidePlugin({
-            $: 'jquery'
+            'window.Quill': 'quill'
         }),
         new CSSSplitWebpackPlugin({
             size: 4000,

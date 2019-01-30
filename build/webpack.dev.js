@@ -34,6 +34,9 @@ module.exports = Object.assign({}, commonWebpack, {
             template: path.join(__dirname, '../public/index.html')
         }),
         new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.ProvidePlugin({
+            'window.Quill': 'quill'
+        })
     ]
 });

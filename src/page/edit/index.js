@@ -4,12 +4,15 @@
 import React from 'react';
 import EventBus from 'eventing-bus';
 import request from '../../common/js/request';
-import ReactQuill from 'react-quill';
+import ReactQuill, {Quill} from 'react-quill';
+import ImageResize from 'quill-image-resize-module';
 import {Button, Input, Modal} from 'antd';
 import {Link} from 'react-router-dom';
 import {withBus} from 'react-bus';
 import 'react-quill/dist/quill.snow.css';
 import './index.less';
+
+Quill.register('modules/imageResize', ImageResize);
 
 export default withBus()(class extends React.Component {
     constructor(props) {
@@ -42,6 +45,7 @@ export default withBus()(class extends React.Component {
     }
 
     modules = {
+        imageResize: {},
         toolbar: [
             [{ 'header': [1, 2, false] }],
             ['bold', 'italic', 'underline','strike', 'blockquote'],
