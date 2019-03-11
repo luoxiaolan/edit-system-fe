@@ -1,6 +1,5 @@
 /**
  * @file 顶部导航
- * @author v_yangpei@baidu.com
  */
 
 import React from 'react';

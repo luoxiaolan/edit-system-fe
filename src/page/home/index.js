@@ -1,6 +1,5 @@
 /**
  * @file 首页
- * @author luoxiaolan@baidu.com
  */
 import React from 'react';
 import {Icon, Select, Button} from 'antd';
